@@ -5104,8 +5104,6 @@ var ApocModal = function () {
 
     _classCallCheck(this, ApocModal);
 
-    this.types = types;
-
     if (el === null) {
       throw new Error('Required element');
     }
@@ -5143,6 +5141,7 @@ var ApocModal = function () {
         position: 'fixed',
         bottom: this.opts.bottom,
         right: this.opts.right,
+        zIndex: '-9999',
         webkitTransform: 'translate3d(50%, 50%, 0)',
         transform: 'translate3d(50%, 50%, 0)',
         opacity: '0'
@@ -5239,6 +5238,8 @@ var ApocModal = function () {
 
   return ApocModal;
 }();
+
+ApocModal.types = types;
 
 return ApocModal;
 
