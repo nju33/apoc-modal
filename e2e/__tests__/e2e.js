@@ -40,16 +40,17 @@ describe('e2e', () => {
   test('fixtures', async () => {
     await page.goto('http://localhost:3333');
 
-    async () => {
+    await (async () => {
       await expect(
-        age.$eval('#slide', el => el.style.transform)
-      ).resolves.stringMatching(/300px, 0px, 0px/);
-      await page.click('.apoc-modal-wall:first-of-type');
+        page.$eval('#simple', el => el.style.opacity)
+      ).resolves.toEqual('0');
+
+      await page.click('#simple-trigger');
       await wait();
 
       await expect(
-        page.$eval('#slide', el => el.style.transform)
-      ).resolves.stringMatching(/0px, 0px, 0px/);
-    };
+        page.$eval('#simple', el => el.style.opacity)
+      ).resolves.toEqual('1');
+    })();
   });
 });

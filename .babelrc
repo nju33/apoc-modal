@@ -1,7 +1,9 @@
 {
   "presets": [
     ["env", {
-      "browsers": ["> 3%", "last 2 versions"],
+      "targets": {
+        "browsers": ["> 3%", "last 2 versions"],
+      },
       "modules": false
     }],
     "flow"
@@ -16,10 +18,16 @@
     "test": {
       "presets": [
         ["env", {
-          "browsers": ["> 3%", "last 2 versions"]
+          "targets": {
+            "browsers": ["> 3%", "last 2 versions"]
+          }
         }],
         "flow"
-      ]
+      ],
+      "plugins": [
+        "transform-object-rest-spread",
+        "transform-class-properties"
+      ],
     }
   }
 }

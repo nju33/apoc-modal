@@ -1,24 +1,20 @@
-# ApocSidebar
+# ApocModal
 
 [![npm: apoc-modal](https://img.shields.io/npm/v/apoc-modal.svg)](https://www.npmjs.com/package/apoc-modal)
-[![CircleCI: nju33/apoc-modal](https://circleci.com/gh/nju33/apoc-modal.svg?style=svg)](https://circleci.com/gh/nju33/apoc-modal)
+[![CircleCI: nju33/apoc-modal](https://circleci.com/gh/nju33/apoc-modal.svg?style=svg&circle-token=c524ee5109884cfe9fb031de89bb008dd5c0123b)](https://circleci.com/gh/nju33/apoc-modal)
+[![Coverage Status](https://coveralls.io/repos/github/nju33/apoc-modal/badge.svg?branch=master)](https://coveralls.io/github/nju33/apoc-modal?branch=master)
 [![tested with jest](https://img.shields.io/badge/tested_with-jest-99424f.svg)](https://github.com/facebook/jest)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 ![license: mit](https://img.shields.io/packagist/l/doctrine/orm.svg)
 
-Sidebar without dependenceies
-
 ![screenshot](https://github.com/nju33/apoc-modal/raw/master/images/screenshot.gif?raw=true)
 
-## Install or Download
+## Install
 
 ```bash
 yarn add apoc-modal
 npm i apoc-modal
 ```
-
-Or access to [releases page](https://github.com/nju33/apoc-modal/releases).
-Then, download the latest version.
 
 ## Demo
 
@@ -31,16 +27,10 @@ Then, download the latest version.
 <button id="trigger">...</button>
 
 <!--
-  `data-apoc-modal-sibling` is required only when type is `lid`.
-  It must be a sibling of an element to become a sidebar.
+  Put the modal element.
+  Specify `width`, `height` and `display:none` in CSS.
 -->
-<div data-apoc-modal-sibling></div>
-
-<!--
-  Specify `width` in CSS.
-  Also, can hide the first state by adding `display:none` to the style
--->
-<div id="sidebar" style="width:300px;display:none">...</div>
+<div id="modal" style="width:300px;height:250px;display:none">...</div>
 
 <!-- When reading by itself -->
 <script src="/path/tp/apoc-modal.js"></script>
@@ -48,31 +38,30 @@ Then, download the latest version.
 
 ```js
 // es
-import ApocSidebar from 'apoc-modal';
+import ApocModal from 'apoc-modal';
 
-const sidebar = new ApocSidebar(
-  document.getElementById('sidebar'),
+const modal = new ApocModal(
+  document.getElementById('modal'),
   {
     // options
 
     // default
-    type: 'slide',
+    type: ApocModal.types.SLIDE_UP,
     // There are other types like this
-    // - 'water',
-    // - 'push',
-    // - 'lid',
-    // - 'door',
-    // - 'waterfall',
-    // - 'waterfallReverse'
+    // - 'simple',
+    // - 'slide-up',
+    // - 'slide-bottom',
+    // - 'slide-left',
+    // - 'slide-right',
+    // - 'spin-reverse'
+    // - 'spin'
+    // - 'flip'
+    // - 'flip-x'
+    // - 'peek'
+    // - 'focus'
 
-    // Parent surrounding `#sidebar` and `[data-apoc-modal-sibling]`
-    // default
-    container: sidebar.parentElement // the parentElement of the `#sidebar`
-
-
-    // Which side you put on
-    // default
-    side: 'left', // or 'right'
+    bottom: '50%',
+    right: '50%',
 
     // The `transition-timing-function` value of css attached
     // to all relevant elements
@@ -91,31 +80,22 @@ const sidebar = new ApocSidebar(
   }
 );
 
-sidebar.init();
-// You can also decide "Open first or close" like `sidebar.init(true)`.
-
-
 document.getElementById('trigger').addEventListener('click', () => {
-  if (sidebar.isOpen()) {
-    sidebar.close();
+  if (modal.isOpen()) {
+    modal.close();
   } else {
-    sidebar.open();
+    modal.open();
   }
 });
 
 setTimeout(() => {
   // Delete events
-  sidebar.teardown();
+  modal.teardown();
 }, 999999)
 ```
-
-### Examples
-
-- `test/fixtures/`
-- `example/webpack/`
 
 ## LICENSE
 
 The MIT License (MIT)
 
-Copyright (c) 2017 nju33 <nju33.ki@gmail.com>
+Copyright (c) 2018 nju33 <nju33.ki@gmail.com>

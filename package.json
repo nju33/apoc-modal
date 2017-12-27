@@ -1,7 +1,7 @@
 {
   "name": "apoc-modal",
   "version": "0.0.0",
-  "description": "Modal without dependenceies",
+  "description": "Modal",
   "main": "dist/apoc-modal.umd.js",
   "jsnext:main": "dist/apoc-modal.es.js",
   "scripts": {
@@ -9,7 +9,8 @@
     "prepare": "yarn prod",
     "preprod": "mkdir -p dist; NODE_ENV='production' node prod.js",
     "prod": "babili dist/apoc-modal.js --no-comments --minified -o dist/apoc-modal.min.js",
-    "test": "jest"
+    "test": "jest",
+    "test:ci": "yarn test -- --coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
   },
   "repository": "nju33/apoc-modal",
   "keywords": [
@@ -18,7 +19,7 @@
     "commonjs",
     "es",
     "ui",
-    "slidebar"
+    "modal"
   ],
   "author": "nju33 <nju33.ki@gmail.com>",
   "license": "MIT",
@@ -43,7 +44,13 @@
     "babili": "^0.1.4",
     "browser-sync": "^2.21.0",
     "casual": "^1.5.19",
+    "coveralls": "^3.0.0",
     "cssnano": "^3.10.0",
+    "eslint": "^4.14.0",
+    "eslint-config-xo-space": "^0.17.0",
+    "eslint-plugin-flowtype": "^2.40.1",
+    "flow-bin": "^0.61.0",
+    "flow-copy-source": "^1.2.1",
     "gulp": "^3.9.1",
     "gulp-less": "^3.4.0",
     "gulp-postcss": "^7.0.0",
@@ -51,6 +58,7 @@
     "jsdom": "^11.5.1",
     "postcss-easings": "^1.0.1",
     "postcss-modules": "^1.1.0",
+    "prettier": "^1.9.2",
     "puppeteer": "^0.13.0",
     "regenerator-runtime": "^0.11.1",
     "rollup": "^0.53.0",
@@ -66,5 +74,8 @@
     "transform": {
       "^.+\\.jsx?$": "babel-jest"
     }
+  },
+  "dependencies": {
+    "tner": "^0.0.1"
   }
 }
