@@ -1,6 +1,6 @@
 {
   "name": "apoc-modal",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Modal",
   "main": "dist/apoc-modal.umd.js",
   "jsnext:main": "dist/apoc-modal.es.js",
